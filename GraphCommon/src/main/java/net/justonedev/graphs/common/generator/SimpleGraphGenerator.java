@@ -14,7 +14,7 @@ public class SimpleGraphGenerator implements GraphGenerator {
     private final int maxVertices;
     private final double minFillPercentage;
     private final double maxFillPercentages;
-    protected final Random random;
+    protected Random random;
 
     public SimpleGraphGenerator(int vertices) {
         this(vertices, DEFAULT_FILL_PERCENTAGE);
@@ -37,6 +37,10 @@ public class SimpleGraphGenerator implements GraphGenerator {
         this.maxVertices = maxVertices;
         this.minFillPercentage = Math.max(0, Math.min(100, minFillPercentage));
         this.maxFillPercentages = Math.max(0, Math.min(100, maxFillPercentage));
+        setSeed(seed);
+    }
+
+    public void setSeed(long seed) {
         this.random = new Random(seed);
     }
 

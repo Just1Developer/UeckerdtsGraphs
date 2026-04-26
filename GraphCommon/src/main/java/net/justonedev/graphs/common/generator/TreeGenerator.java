@@ -31,7 +31,7 @@ public class TreeGenerator extends SimpleGraphGenerator {
     }
 
     @Override
-    public Graph generate() {
+    public Tree generate() {
         int maxVertices = pollVertexCount();
         Vertex root = new Vertex();
         Tree tree = new Tree(root);

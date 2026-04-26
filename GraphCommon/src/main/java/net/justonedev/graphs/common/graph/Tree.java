@@ -1,13 +1,17 @@
 package net.justonedev.graphs.common.graph;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
 
 public class Tree extends Graph {
+    @Getter
     protected Vertex root;
 
     public Tree(Vertex root) {
@@ -39,5 +43,9 @@ public class Tree extends Graph {
             remaining.addAll(edges.get(vertex).stream().map(Edge::to).filter(v -> !seen.contains(v)).toList());
         }
         return vertices;
+    }
+
+    public List<Vertex> getChildren(Vertex parent) {
+        return edges.get(parent).stream().map(Edge::to).filter(vertex -> !Objects.equals(vertex, parent)).toList();
     }
 }

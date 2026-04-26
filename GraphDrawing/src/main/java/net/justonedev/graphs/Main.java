@@ -5,21 +5,32 @@ import net.justonedev.graphs.common.drawing.LinearLineDrawing;
 import net.justonedev.graphs.common.generator.BinaryTreeGenerator;
 import net.justonedev.graphs.common.generator.GraphGenerator;
 import net.justonedev.graphs.common.generator.SimpleGraphGenerator;
+import net.justonedev.graphs.common.generator.TreeGenerator;
 import net.justonedev.graphs.common.graph.Graph;
+import net.justonedev.graphs.common.graph.Tree;
 import net.justonedev.graphs.common.graph.Vertex;
 import net.justonedev.graphs.common.ui.Window;
 import net.justonedev.graphs.common.ui.drawable.Position;
+import net.justonedev.graphs.reingold_tilford.ReingoldTilford;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
-    private static final boolean DRAW_TREE = true;
+    private static final int TREE_DEPTH = 5;
+    private static final double TREE_PROPAGATION_PROBABILITY = 0.85;
 
     public static void main(String[] args) {
         Window window = new Window(30);
-        GraphGenerator generator = DRAW_TREE ? new BinaryTreeGenerator(3, 0.85) : new SimpleGraphGenerator(10);
-        window.drawGraphDrawing(generateSimpleDrawing(generator));
+        GraphGenerator generator = new SimpleGraphGenerator(10);
+        TreeGenerator treeGenerator = new BinaryTreeGenerator(TREE_DEPTH, TREE_PROPAGATION_PROBABILITY, 3);
+        //window.drawGraphDrawing(generateSimpleDrawing(generator));
+
+        // Reingold-Tilford:
+        Tree binaryTree = treeGenerator.generate();
+        ReingoldTilford reingoldTilford = new ReingoldTilford(binaryTree, 700, -200, 50, 80);
+        reingoldTilford.setVertexDrawings();
+        window.drawGraphDrawing(reingoldTilford);
     }
 
     private static Drawing generateSimpleDrawing(GraphGenerator graphGenerator) {
