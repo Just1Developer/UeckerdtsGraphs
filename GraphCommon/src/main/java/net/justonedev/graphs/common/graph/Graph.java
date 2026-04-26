@@ -46,6 +46,21 @@ public class Graph {
         edges.get(edge.to()).add(edge);
     }
 
+    public void removeEdge(Edge edge, boolean removeUnconnectedVertices) {
+        removeEdgeFromVertex(edge.from(), edge, removeUnconnectedVertices);
+        removeEdgeFromVertex(edge.to(), edge, removeUnconnectedVertices);
+    }
+
+    private void removeEdgeFromVertex(Vertex vertex, Edge edge, boolean removeUnconnectedVertices) {
+        List<Edge> edgeList = edges.get(vertex);
+        if (edgeList != null) {
+            edgeList.remove(edge);
+            if (removeUnconnectedVertices && edgeList.isEmpty()) {
+                edges.remove(vertex);
+            }
+        }
+    }
+
     public boolean isSimple() {
         return !hasLoop() && !hasMultiedge();
     }

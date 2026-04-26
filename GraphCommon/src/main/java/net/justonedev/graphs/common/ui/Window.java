@@ -22,7 +22,7 @@ public class Window {
 
     public Window(double fps) {
         this.framesPerSecond = fps;
-        frame = new JFrame("Neural Network Renderer");
+        frame = new JFrame("Simple Graph Renderer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
