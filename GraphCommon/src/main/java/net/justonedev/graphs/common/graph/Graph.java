@@ -61,6 +61,10 @@ public class Graph {
         }
     }
 
+    public int getSize() {
+        return edges.size();
+    }
+
     public boolean isSimple() {
         return !hasLoop() && !hasMultiedge();
     }

@@ -14,7 +14,7 @@ public class SimpleGraphGenerator implements GraphGenerator {
     private final int maxVertices;
     private final double minFillPercentage;
     private final double maxFillPercentages;
-    private final Random random;
+    protected final Random random;
 
     public SimpleGraphGenerator(int vertices) {
         this(vertices, DEFAULT_FILL_PERCENTAGE);
